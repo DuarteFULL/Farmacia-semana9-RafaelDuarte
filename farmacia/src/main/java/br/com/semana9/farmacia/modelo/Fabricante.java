@@ -1,6 +1,7 @@
 package br.com.semana9.farmacia.modelo;
 
 import br.com.semana9.farmacia.dto.FabricanteRecord;
+import br.com.semana9.farmacia.dto.ProdutoRecord;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +29,10 @@ public class Fabricante {
 
     public Fabricante(@NotNull @Valid FabricanteRecord fabricante) {
         this.nome = fabricante.nome();
+    }
+
+    public Fabricante(ProdutoRecord fRepProdutoRecord) {
+        this.nome = fRepProdutoRecord.fabricante().nome();
     }
 
 }

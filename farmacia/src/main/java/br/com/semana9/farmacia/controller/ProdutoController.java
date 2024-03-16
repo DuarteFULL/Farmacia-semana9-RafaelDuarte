@@ -22,6 +22,7 @@ public class ProdutoController {
 	@PostMapping
 	@Transactional
 	public void cadastrar(@RequestBody ProdutoRecord pRecord){
+		FabricanteController.cadastrar(pRecord.fabricante());
 		pRepository.save(new Produto(pRecord));
 	}
 
