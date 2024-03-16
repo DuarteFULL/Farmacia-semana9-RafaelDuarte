@@ -1,5 +1,6 @@
 package br.com.semana9.farmacia.modelo;
 
+import br.com.semana9.farmacia.dto.ProdutoRecord;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,10 +24,17 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String descricao;
     private float preco;
-
+    private String descricao;
+    
     @ManyToOne
     private Fabricante fabricante;
+
+    public Produto(ProdutoRecord pRecord) {
+        this.nome = pRecord.nome();
+        this.preco = pRecord.preco();
+        this.descricao = pRecord.descricao();
+        this.fabricante = new Fabricante(pRecord.fabricante());
+    }
 
 }

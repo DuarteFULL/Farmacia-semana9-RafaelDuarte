@@ -20,8 +20,7 @@ public class ProdutoController {
 	
 	@PostMapping
 	public void cadastrar(@RequestBody ProdutoRecord pRecord){
-		pRepository.save(new Produto(nuul, pRecord.getNome(), pRecord.getDescricao(), pRecord.getPreco(), pRecord.getFabricante()));
-		System.out.println(json);
+		pRepository.save(new Produto(pRecord));
 	}
 
 	@GetMapping
