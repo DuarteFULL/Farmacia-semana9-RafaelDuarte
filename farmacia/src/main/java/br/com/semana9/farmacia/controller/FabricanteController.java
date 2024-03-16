@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.semana9.farmacia.dto.FabricanteRecord;
 import br.com.semana9.farmacia.modelo.Fabricante;
 import br.com.semana9.farmacia.repository.FabricanteRepository;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 @RestController
@@ -21,7 +22,7 @@ public class FabricanteController {
 
 	//@PostMapping
 	@Transactional
-	public static void cadastrar(@RequestBody FabricanteRecord fRecord){
+	public static void cadastrar(@RequestBody @Valid FabricanteRecord fRecord){
 		fRepository.save(new Fabricante(fRecord));
 	}
 
