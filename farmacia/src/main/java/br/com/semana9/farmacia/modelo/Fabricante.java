@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -33,6 +34,10 @@ public class Fabricante {
 
     public Fabricante(ProdutoRecord fRepProdutoRecord) {
         this.nome = fRepProdutoRecord.fabricante().nome();
+    }
+
+    public Fabricante(@NotBlank String nome2) {
+        this.nome = nome2;
     }
 
 }
