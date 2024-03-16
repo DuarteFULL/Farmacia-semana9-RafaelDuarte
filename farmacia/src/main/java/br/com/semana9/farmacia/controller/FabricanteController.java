@@ -19,13 +19,20 @@ public class FabricanteController {
 	@Autowired
 	private static FabricanteRepository fRepository;
 
-	@PostMapping
+	//@PostMapping
 	@Transactional
 	public static void cadastrar(@RequestBody FabricanteRecord fRecord){
 		fRepository.save(new Fabricante(fRecord));
 	}
 
+	@PostMapping
+	@Transactional
 	public static void salvar(@NotBlank String nome){
-		fRepository.save(new Fabricante(nome));
+		System.out.println("2=============================");
+		System.out.println(nome);
+		Fabricante fSalvar = new Fabricante(nome);
+		System.out.println("3=============================");
+		System.out.println(fSalvar.getNome());
+		fRepository.save(fSalvar);
 	}
 }
