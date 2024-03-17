@@ -40,4 +40,11 @@ public class Fabricante {
         this.nome = nome2;
     }
 
+    @Override
+    public String toString() {
+        return "Fabricante [id=" + id + ", nome=" + nome + "]";
+    }
+
+    
+
 }

@@ -8,4 +8,6 @@ import br.com.semana9.farmacia.modelo.Fabricante;
 @Repository
 public interface FabricanteRepository extends JpaRepository<Fabricante, Integer> {
 
+    Fabricante findByNome(String nome);
+
 }

@@ -3,6 +3,7 @@ package br.com.semana9.farmacia.modelo;
 import br.com.semana9.farmacia.dto.AtualizarProdutoRecord;
 import br.com.semana9.farmacia.dto.ProdutoRecord;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,17 +27,18 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private float preco;
     private String descricao;
+    private float preco;
     
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.EAGER)
     private Fabricante fabricante;
 
     public Produto(ProdutoRecord pRecord) {
         this.nome = pRecord.nome();
         this.preco = pRecord.preco();
         this.descricao = pRecord.descricao();
-        this.fabricante = new Fabricante(pRecord.fabricante());
+        this.fabricante = new Fabricante(pRecord.fabricante().nome());
     }
 
     public void atualizar(AtualizarProdutoRecord pRecord) {
@@ -47,5 +49,13 @@ public class Produto {
             this.preco = pRecord.preco();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", descricao=" + descricao
+                + ", fabricante=" + fabricante + "]";
+    }
+
+    
 
 }

@@ -3,12 +3,14 @@ package br.com.semana9.farmacia.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.semana9.farmacia.dto.FabricanteListagemRecord;
 import br.com.semana9.farmacia.dto.FabricanteRecord;
@@ -25,13 +27,20 @@ public class FabricanteController {
 	@Autowired
 	private static FabricanteRepository fRepository;
 
-	//@PostMapping
+	@PostMapping
 	@Transactional
 	public static void cadastrar(@RequestBody @Valid FabricanteRecord fRecord){
-		fRepository.save(new Fabricante(fRecord));
+		System.out.println("1=============================");
+		Fabricante novoFabricante = new Fabricante(fRecord);
+		System.out.println(novoFabricante.toString());
+
+		fRepository.save(novoFabricante);
+
+		//var uri = uriBuilder.path("/fabricantes/{id}").buildAndExpand(fabricante.getId()).toUri();
+		//return ResponseEntity.created(uri).body(new FabricanteAtualizadoRecord(novoFabricante));
 	}
 
-	@PostMapping
+	//@PostMapping
 	@Transactional
 	public static void salvar(@NotBlank String nome){
 		System.out.println("2=============================");
