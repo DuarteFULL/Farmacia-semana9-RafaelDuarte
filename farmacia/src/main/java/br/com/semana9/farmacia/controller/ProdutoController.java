@@ -32,6 +32,7 @@ public class ProdutoController {
 	@PostMapping
 	@Transactional
 	public void cadastrar(@RequestBody @Valid ProdutoRecord pRecord){
+		//Essa funcionalidade ainda não esta funcionando, é retornar um erro ao tentar cadastras o fabricante.
 		System.out.println("============================");
 		System.out.println("CADASTRAR PRODUTO");
 		FabricanteController.salvar(pRecord.fabricante().nome());
