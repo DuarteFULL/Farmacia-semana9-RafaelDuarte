@@ -5,10 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record ProdutoRecord(
+        Integer id,
         @NotBlank String nome,
         @NotBlank String descricao,
-        @NotBlank Float preco,
-        @NotNull @Valid FabricanteRecord fabricante
-        ){
-                
-        }
+        Float preco,
+        @NotNull @Valid FabricanteRecord fabricante){}

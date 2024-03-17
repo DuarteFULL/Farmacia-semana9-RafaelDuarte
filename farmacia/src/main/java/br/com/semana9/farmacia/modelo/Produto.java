@@ -1,5 +1,6 @@
 package br.com.semana9.farmacia.modelo;
 
+import br.com.semana9.farmacia.dto.AtualizarProdutoRecord;
 import br.com.semana9.farmacia.dto.ProdutoRecord;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,6 +37,15 @@ public class Produto {
         this.preco = pRecord.preco();
         this.descricao = pRecord.descricao();
         this.fabricante = new Fabricante(pRecord.fabricante());
+    }
+
+    public void atualizar(AtualizarProdutoRecord pRecord) {
+        if (pRecord.descricao() != null) {
+            this.descricao = pRecord.descricao();
+        }
+        if (pRecord.preco() != null) {
+            this.preco = pRecord.preco();
+        }
     }
 
 }
