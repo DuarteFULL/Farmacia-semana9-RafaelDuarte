@@ -56,6 +56,10 @@ public class Produto {
                 + ", fabricante=" + fabricante + "]";
     }
 
+    public void setFabricante(Fabricante novoFab) {
+       this.fabricante = novoFab;
+    }
+
     
 
 }

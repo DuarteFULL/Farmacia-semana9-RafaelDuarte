@@ -17,6 +17,7 @@ import br.com.semana9.farmacia.dto.FabricanteRecord;
 import br.com.semana9.farmacia.dto.ProdutoListagemRecord;
 import br.com.semana9.farmacia.modelo.Fabricante;
 import br.com.semana9.farmacia.repository.FabricanteRepository;
+import br.com.semana9.farmacia.repository.ProdutoRepository;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
@@ -25,15 +26,12 @@ import jakarta.validation.constraints.NotBlank;
 public class FabricanteController {
 
 	@Autowired
-	private static FabricanteRepository fRepository;
+	private FabricanteRepository fRepository;
 
 	@PostMapping
 	@Transactional
-	public static void cadastrar(@RequestBody @Valid FabricanteRecord fRecord){
-		System.out.println("1=============================");
+	public void cadastrar(@RequestBody @Valid FabricanteRecord fRecord){
 		Fabricante novoFabricante = new Fabricante(fRecord);
-		System.out.println(novoFabricante.toString());
-
 		fRepository.save(novoFabricante);
 
 		//var uri = uriBuilder.path("/fabricantes/{id}").buildAndExpand(fabricante.getId()).toUri();
@@ -42,7 +40,7 @@ public class FabricanteController {
 
 	//@PostMapping
 	@Transactional
-	public static void salvar(@NotBlank String nome){
+	public void salvar(@NotBlank String nome){
 		System.out.println("2=============================");
 		System.out.println(nome);
 		Fabricante fSalvar = new Fabricante(nome);

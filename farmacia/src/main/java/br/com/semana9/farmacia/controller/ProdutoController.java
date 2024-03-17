@@ -38,27 +38,28 @@ public class ProdutoController {
 	@Transactional
 	public ResponseEntity cadastrar(@RequestBody @Valid ProdutoRecord pRecord, UriComponentsBuilder uriBuilder){
 		//Essa funcionalidade ainda não esta funcionando, é retornar um erro ao tentar cadastras o fabricante.
-		System.out.println("============================");
-		System.out.println("CADASTRAR Fabricante");
+		//System.out.println("1============================");
+		//System.out.println("CADASTRAR Fabricante");
 		Fabricante fabricante = new Fabricante(pRecord.fabricante().nome());
-		System.out.println(fabricante.toString());
+		//System.out.println(fabricante.toString());
 		fRepository.save(fabricante);
 		Fabricante novoFab = fRepository.findByNome(fabricante.getNome());
-		System.out.println("============================");
-		System.out.println("IMPRIME Fabricante depois de cadastrador");
-		System.out.println(novoFab.toString());
+		//System.out.println("2============================");
+		//System.out.println("IMPRIME Fabricante depois de cadastrador");
+		//System.out.println(novoFab.toString());
 
-		System.out.println("============================");
-		System.out.println("CADASTRAR produto");
+		//System.out.println("3============================");
+		//System.out.println("CADASTRAR produto");
 		Produto produto = new Produto(pRecord);
-		System.out.println("============================");
-		System.out.println("IMPRIME Produto antes de cadastrador");
-		System.out.println(produto.toString());
+		produto.setFabricante(novoFab);
+		//System.out.println("4============================");
+		//System.out.println("IMPRIME Produto antes de cadastrador");
+		//System.out.println(produto.toString());
 		pRepository.save(produto);
 		Produto novoPro = pRepository.findByNome(produto.getNome());
-		System.out.println("============================");
-		System.out.println("IMPRIME Produto depois de cadastrador");
-		System.out.println(novoPro.toString());
+		//System.out.println("============================");
+		//System.out.println("IMPRIME Produto depois de cadastrador");
+		//System.out.println(novoPro.toString());
 
 		var uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId()).toUri();
 
